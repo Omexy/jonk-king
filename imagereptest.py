@@ -18,6 +18,7 @@ while running:
 
     jonk = pygame.image.load("jonktest.png")
     jonkrez = [184,346]
+    pygame.Surface.set_colorkey(jonk, [255,255,255])
     screen.blit(jonk, (width/2-jonkrez[0]/2,vert/2-jonkrez[1]/2))
 
     # flip() the display to put your work on screen
