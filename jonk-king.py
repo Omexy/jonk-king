@@ -17,6 +17,8 @@ while running:
             if event.key == pygame.K_ESCAPE: #Quits game when ESC is pressed
                 running = False
 
+#ADD CODE TO FRAMEWORK HERE
+
 pygame.display.flip() #Allows for images to be added
 clock.tick(60) #Sets FPS to 60
 pygame.quit()
