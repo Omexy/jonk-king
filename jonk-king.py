@@ -1,26 +1,19 @@
 import pygame
-from pygame.locals import *
+
+pygame.display.set_caption('Jonk King')
+icon = pygame.image.load('jonk-king.ico')
+pygame.display.set_icon(icon)
 pygame.init()
-window = pygame.display.set_mode((600, 600))
+width = 1280; vert = 720
+screen = pygame.display.set_mode((width, vert))
 clock = pygame.time.Clock()
-player_rect = Rect(200, 500, 50, 50)
-player_rect2 = Rect(200, 0, 50, 50)
-gravity = 1
-run = True
+running = True
 
-while run:
-    clock.tick(60)
-    player_rect2.bottom += gravity
-    collide = pygame.Rect.colliderect(player_rect, player_rect2)
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
 
-    if collide:
-        player_rect2.bottom = player_rect.top
-        gravity = 1
-
-    if not collide:
-        gravity += 1
-
-    pygame.draw.rect(window, (0, 255, 0), player_rect)
-    pygame.draw.rect(window, (0, 0, 255), player_rect2)
-    pygame.display.update()
-    window.fill((255, 255, 255))
+pygame.display.flip()
+clock.tick(60)
+pygame.quit()
