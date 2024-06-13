@@ -1,6 +1,6 @@
-import pygame, sys, ctypes
+import pygame, sys, ctypes, time
 user32 = ctypes.windll.user32
-monitorRes = user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)
+monitorRes = [1280, 720]
 
 pygame.display.set_caption('Jonk King')
 icon = pygame.image.load('jonk-king.ico')
