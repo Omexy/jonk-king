@@ -34,13 +34,14 @@ class Sprite(pygame.sprite.Sprite):
             return True
         else:
             return False
-        
+
+# Initialising
 pygame.init()
 size = (WIDTH, HEIGHT)
 screen = pygame.display.set_mode(size)
 
 all_sprites_list = pygame.sprite.Group()
-playerCar = Sprite((255, 0, 0), 20, 30)
+playerCar = Sprite((255, 0, 0), 175, 175)
 playerCar.rect.x = 640
 playerCar.rect.y = 360
 all_sprites_list.add(playerCar)
@@ -49,23 +50,27 @@ running = True
 clock = pygame.time.Clock()
 
 while running:
+    # Checks if x pressed to close
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-            
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_w and event.key == pygame.K_d:
-                playerCar.moveLeft(50)
-                playerCar.jump()
 
+            # Checks if the event is a key press and if it is "w" to jump once
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_w:
+                playerCar.jump()
+    # Defines a list of boolean values to see if each key is pressed
     keys = pygame.key.get_pressed()
+    # Checks if the keys are pressed to move left/right
     if keys[pygame.K_a]:
         playerCar.moveLeft(10)
     if keys[pygame.K_d]:
         playerCar.moveRight(10)
-    if (not(True in keys)) and (playerCar.onBottom() == False):
+    # Checks if no key is pressed and if the player is at the bottom of the screen to apply gravity
+    if playerCar.onBottom() == False:
         playerCar.gravity()
-        
+
+    # Updates screen
     all_sprites_list.update()
     screen.fill(SURFACE_COLOR)
     all_sprites_list.draw(screen)
